@@ -21,7 +21,7 @@
         private const byte _falseAsByte = 0;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryRead(this ReadOnlySpan<byte> source, out bool value, out ReadOnlySpan<byte> rest) {
+        public static bool TryRead(this in ReadOnlySpan<byte> source, out bool value, out ReadOnlySpan<byte> rest) {
             if (source.Length < _byteLengthInBytes) {
                 value = default;
                 rest = source;
@@ -34,7 +34,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryRead(this ReadOnlySpan<byte> source, out byte value, out ReadOnlySpan<byte> rest) {
+        public static bool TryRead(this in ReadOnlySpan<byte> source, out byte value, out ReadOnlySpan<byte> rest) {
             if (source.Length < _byteLengthInBytes) {
                 value = default;
                 rest = source;
@@ -47,7 +47,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryRead(this ReadOnlySpan<byte> source, out sbyte value, out ReadOnlySpan<byte> rest) {
+        public static bool TryRead(this in ReadOnlySpan<byte> source, out sbyte value, out ReadOnlySpan<byte> rest) {
             if (source.Length < _sByteLengthInBytes) {
                 value = default;
                 rest = source;
@@ -60,7 +60,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryRead(this ReadOnlySpan<byte> source, out short value, out ReadOnlySpan<byte> rest) {
+        public static bool TryRead(this in ReadOnlySpan<byte> source, out short value, out ReadOnlySpan<byte> rest) {
             if (source.Length < _shortLengthInBytes) {
                 value = default;
                 rest = source;
@@ -74,7 +74,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryRead(this ReadOnlySpan<byte> source, out ushort value, out ReadOnlySpan<byte> rest) {
+        public static bool TryRead(this in ReadOnlySpan<byte> source, out ushort value, out ReadOnlySpan<byte> rest) {
             if (source.Length < _uShortLengthInBytes) {
                 value = default;
                 rest = source;
@@ -88,7 +88,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryRead(this ReadOnlySpan<byte> source, out int value, out ReadOnlySpan<byte> rest) {
+        public static bool TryRead(this in ReadOnlySpan<byte> source, out int value, out ReadOnlySpan<byte> rest) {
             if (source.Length < _intLengthInBytes) {
                 value = default;
                 rest = source;
@@ -102,7 +102,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryRead(this ReadOnlySpan<byte> source, out uint value, out ReadOnlySpan<byte> rest) {
+        public static bool TryRead(this in ReadOnlySpan<byte> source, out uint value, out ReadOnlySpan<byte> rest) {
             if (source.Length < _uIntLengthInBytes) {
                 value = default;
                 rest = source;
@@ -116,7 +116,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryRead(this ReadOnlySpan<byte> source, out long value, out ReadOnlySpan<byte> rest) {
+        public static bool TryRead(this in ReadOnlySpan<byte> source, out long value, out ReadOnlySpan<byte> rest) {
             if (source.Length < _longLengthInBytes) {
                 value = default;
                 rest = source;
@@ -130,7 +130,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryRead(this ReadOnlySpan<byte> source, out ulong value, out ReadOnlySpan<byte> rest) {
+        public static bool TryRead(this in ReadOnlySpan<byte> source, out ulong value, out ReadOnlySpan<byte> rest) {
             if (source.Length < _uLongLengthInBytes) {
                 value = default;
                 rest = source;
@@ -144,7 +144,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryRead(this ReadOnlySpan<byte> source, out char value, out ReadOnlySpan<byte> rest) {
+        public static bool TryRead(this in ReadOnlySpan<byte> source, out char value, out ReadOnlySpan<byte> rest) {
             if (source.Length < _charLengthInBytes) {
                 value = default;
                 rest = source;
@@ -158,7 +158,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryRead(this ReadOnlySpan<byte> source, out float value, out ReadOnlySpan<byte> rest) {
+        public static bool TryRead(this in ReadOnlySpan<byte> source, out float value, out ReadOnlySpan<byte> rest) {
             if (source.Length < _floatLengthInBytes) {
                 value = default;
                 rest = source;
@@ -172,7 +172,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryRead(this ReadOnlySpan<byte> source, out double value, out ReadOnlySpan<byte> rest) {
+        public static bool TryRead(this in ReadOnlySpan<byte> source, out double value, out ReadOnlySpan<byte> rest) {
             if (source.Length < _doubleLengthInBytes) {
                 value = default;
                 rest = source;
@@ -186,7 +186,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryRead(this ReadOnlySpan<byte> source, out decimal value, out ReadOnlySpan<byte> rest) {
+        public static bool TryRead(this in ReadOnlySpan<byte> source, out decimal value, out ReadOnlySpan<byte> rest) {
             if (source.Length < _decimalLengthInBytes) {
                 value = default;
                 rest = source;
@@ -207,7 +207,7 @@
         /// <param name="rest">What's left from source after copying.</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryRead(this ReadOnlySpan<byte> source, Span<byte> value, out ReadOnlySpan<byte> rest) {
+        public static bool TryRead(this in ReadOnlySpan<byte> source, Span<byte> value, out ReadOnlySpan<byte> rest) {
             if (source.Length < value.Length) {
                 rest = source;
                 return false;
@@ -219,7 +219,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryRead(this ReadOnlySpan<byte> source, out ReadOnlySpan<byte> value, int length,
+        public static bool TryRead(this in ReadOnlySpan<byte> source, out ReadOnlySpan<byte> value, int length,
             out ReadOnlySpan<byte> rest) {
             if (source.Length < length) {
                 rest = source;
@@ -233,7 +233,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryRead(this ReadOnlySpan<byte> source, out string? value, out ReadOnlySpan<byte> rest,
+        public static bool TryRead(this in ReadOnlySpan<byte> source, out string? value, out ReadOnlySpan<byte> rest,
             Encoding encoding) {
             bool success = TryRead(source, out int length, out rest);
             if (!success || rest.Length < length) {
