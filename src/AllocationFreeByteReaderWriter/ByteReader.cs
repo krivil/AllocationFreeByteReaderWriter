@@ -242,6 +242,7 @@
             }
 
             value = encoding.GetString(rest[..length]);
+            rest = rest[value.Length..];
             return true;
         }
 

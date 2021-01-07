@@ -211,9 +211,8 @@
                 return false;
             }
 
-            rest = destination[value.Length..];
-
             value.CopyTo(destination);
+            rest = destination[value.Length..];
             return true;
         }
 
