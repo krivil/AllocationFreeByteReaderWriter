@@ -24,7 +24,7 @@
         private const byte _trueAsByte = 1;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryWrite(this in Span<byte> destination, in bool value, out Span<byte> rest) {
+        public static bool TryWrite(this in Span<byte> destination, bool value, out Span<byte> rest) {
             if (destination.Length < _byteLengthInBytes) {
                 rest = destination;
                 return false;
@@ -36,7 +36,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryWrite(this in Span<byte> destination, in byte value, out Span<byte> rest) {
+        public static bool TryWrite(this in Span<byte> destination, byte value, out Span<byte> rest) {
             if (destination.Length < _byteLengthInBytes) {
                 rest = destination;
                 return false;
@@ -48,7 +48,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryWrite(this in Span<byte> destination, in sbyte value, out Span<byte> rest) {
+        public static bool TryWrite(this in Span<byte> destination, sbyte value, out Span<byte> rest) {
             if (destination.Length < _sByteLengthInBytes) {
                 rest = destination;
                 return false;
@@ -88,7 +88,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryWrite(this in Span<byte> destination, in ushort value, out Span<byte> rest) {
+        public static bool TryWrite(this in Span<byte> destination, ushort value, out Span<byte> rest) {
             if (destination.Length < _uShortLengthInBytes) {
                 rest = destination;
                 return false;
@@ -101,7 +101,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryWrite(this in Span<byte> destination, in int value, out Span<byte> rest) {
+        public static bool TryWrite(this in Span<byte> destination, int value, out Span<byte> rest) {
             if (destination.Length < _intLengthInBytes) {
                 rest = destination;
                 return false;
@@ -114,7 +114,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryWrite(this in Span<byte> destination, in uint value, out Span<byte> rest) {
+        public static bool TryWrite(this in Span<byte> destination, uint value, out Span<byte> rest) {
             if (destination.Length < _uIntLengthInBytes) {
                 rest = destination;
                 return false;
@@ -127,7 +127,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryWrite(this in Span<byte> destination, in long value, out Span<byte> rest) {
+        public static bool TryWrite(this in Span<byte> destination, long value, out Span<byte> rest) {
             if (destination.Length < _longLengthInBytes) {
                 rest = destination;
                 return false;
@@ -140,7 +140,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryWrite(this in Span<byte> destination, in ulong value, out Span<byte> rest) {
+        public static bool TryWrite(this in Span<byte> destination, ulong value, out Span<byte> rest) {
             if (destination.Length < _uLongLengthInBytes) {
                 rest = destination;
                 return false;
@@ -153,7 +153,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryWrite(this in Span<byte> destination, in char value, out Span<byte> rest) {
+        public static bool TryWrite(this in Span<byte> destination, char value, out Span<byte> rest) {
             if (destination.Length < _charLengthInBytes) {
                 rest = destination;
                 return false;
@@ -166,7 +166,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryWrite(this in Span<byte> destination, in float value, out Span<byte> rest) {
+        public static bool TryWrite(this in Span<byte> destination, float value, out Span<byte> rest) {
             if (destination.Length < _floatLengthInBytes) {
                 rest = destination;
                 return false;
@@ -179,7 +179,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryWrite(this in Span<byte> destination, in double value, out Span<byte> rest) {
+        public static bool TryWrite(this in Span<byte> destination, double value, out Span<byte> rest) {
             if (destination.Length < _doubleLengthInBytes) {
                 rest = destination;
                 return false;
