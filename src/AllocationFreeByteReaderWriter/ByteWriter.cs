@@ -64,19 +64,6 @@
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool TryWrite(this in Span<byte> destination, short value, out Span<byte> rest) {
             if (destination.Length < _shortLengthInBytes) {
-                rest = Span<byte>.Empty;
-                return false;
-            }
-
-            rest = destination[_shortLengthInBytes..];
-            BinaryPrimitives.WriteInt16LittleEndian(destination, value);
-            return true;
-        }
-
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryWrite(this in Span<byte> destination, in short value, out Span<byte> rest) {
-            if (destination.Length < _shortLengthInBytes) {
                 rest = destination;
                 return false;
             }
