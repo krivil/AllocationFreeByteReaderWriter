@@ -7,7 +7,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Version>0.2.0</Version>
+		<Version>0.3.0</Version>
 		<Authors>Kiril Markov</Authors>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageProjectUrl>https://github.com/krivil/AllocationFreeByteReaderWriter</PackageProjectUrl>

@@ -1,7 +1,6 @@
 ﻿namespace AllocationFreeByteReaderWriter {
     using System;
     using System.Buffers;
-    using System.Buffers.Binary;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
     using System.Text;
@@ -205,17 +204,8 @@
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool TryWrite(this in Span<byte> destination, in ReadOnlyMemory<byte> value,
-            out Span<byte> rest) {
-            if (destination.Length < value.Length) {
-                rest = destination;
-                return false;
-            }
-
-            rest = destination[value.Length..];
-
-            value.Span.CopyTo(destination);
-            return true;
-        }
+            out Span<byte> rest) =>
+            TryWrite(destination, value.Span, out rest);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool TryWrite(this in Span<byte> destination, in ReadOnlySequence<byte> value,
@@ -225,9 +215,8 @@
                 return false;
             }
 
-            rest = destination[(int)value.Length..];
-
             value.CopyTo(destination);
+            rest = destination[(int)value.Length..];
             return true;
         }
 
