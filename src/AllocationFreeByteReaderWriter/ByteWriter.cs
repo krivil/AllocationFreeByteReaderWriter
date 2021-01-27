@@ -53,9 +53,8 @@
                 return false;
             }
 
-            rest = destination[_sByteLengthInBytes..];
-
             Unsafe.WriteUnaligned(ref MemoryMarshal.GetReference(destination), value);
+            rest = destination[_sByteLengthInBytes..];
             return true;
         }
 
@@ -67,9 +66,8 @@
                 return false;
             }
 
-            rest = destination[_shortLengthInBytes..];
-
             Unsafe.WriteUnaligned(ref MemoryMarshal.GetReference(destination), value);
+            rest = destination[_shortLengthInBytes..];
             return true;
         }
 
@@ -80,9 +78,8 @@
                 return false;
             }
 
-            rest = destination[_uShortLengthInBytes..];
-
             Unsafe.WriteUnaligned(ref MemoryMarshal.GetReference(destination), value);
+            rest = destination[_uShortLengthInBytes..];
             return true;
         }
 
@@ -93,9 +90,8 @@
                 return false;
             }
 
-            rest = destination[_intLengthInBytes..];
-
             Unsafe.WriteUnaligned(ref MemoryMarshal.GetReference(destination), value);
+            rest = destination[_intLengthInBytes..];
             return true;
         }
 
@@ -106,9 +102,8 @@
                 return false;
             }
 
-            rest = destination[_uIntLengthInBytes..];
-
             Unsafe.WriteUnaligned(ref MemoryMarshal.GetReference(destination), value);
+            rest = destination[_uIntLengthInBytes..];
             return true;
         }
 
@@ -119,9 +114,8 @@
                 return false;
             }
 
-            rest = destination[_longLengthInBytes..];
-
             Unsafe.WriteUnaligned(ref MemoryMarshal.GetReference(destination), value);
+            rest = destination[_longLengthInBytes..];
             return true;
         }
 
@@ -132,9 +126,8 @@
                 return false;
             }
 
-            rest = destination[_uLongLengthInBytes..];
-
             Unsafe.WriteUnaligned(ref MemoryMarshal.GetReference(destination), value);
+            rest = destination[_uLongLengthInBytes..];
             return true;
         }
 
@@ -145,9 +138,8 @@
                 return false;
             }
 
-            rest = destination[_charLengthInBytes..];
-
             Unsafe.WriteUnaligned(ref MemoryMarshal.GetReference(destination), value);
+            rest = destination[_charLengthInBytes..];
             return true;
         }
 
@@ -158,9 +150,8 @@
                 return false;
             }
 
-            rest = destination[_floatLengthInBytes..];
-
             Unsafe.WriteUnaligned(ref MemoryMarshal.GetReference(destination), value);
+            rest = destination[_floatLengthInBytes..];
             return true;
         }
 
@@ -171,9 +162,8 @@
                 return false;
             }
 
-            rest = destination[_doubleLengthInBytes..];
-
             Unsafe.WriteUnaligned(ref MemoryMarshal.GetReference(destination), value);
+            rest = destination[_doubleLengthInBytes..];
             return true;
         }
 
@@ -184,9 +174,8 @@
                 return false;
             }
 
-            rest = destination[_decimalLengthInBytes..];
-
             Unsafe.WriteUnaligned(ref MemoryMarshal.GetReference(destination), value);
+            rest = destination[_decimalLengthInBytes..];
             return true;
         }
 
