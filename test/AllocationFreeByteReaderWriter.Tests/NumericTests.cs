@@ -1,11 +1,10 @@
 namespace AllocationFreeByteReaderWriter.Tests {
     using System;
-    using System.Text;
     using Xunit;
 
-    public class UnitTests {
+    public class NumericTests {
         [Fact]
-        public void TestBool() {
+        public void Bool() {
             bool expected = true;
             byte[] buffer = Array.Empty<byte>();
             Span<byte> span = buffer;
@@ -42,7 +41,7 @@ namespace AllocationFreeByteReaderWriter.Tests {
         }
 
         [Fact]
-        public void TestByte() {
+        public void Byte() {
             const byte expected = byte.MaxValue;
             byte[] buffer = Array.Empty<byte>();
             Span<byte> span = buffer;
@@ -68,7 +67,7 @@ namespace AllocationFreeByteReaderWriter.Tests {
         }
 
         [Fact]
-        public void TestSByte() {
+        public void SByte() {
             const sbyte expected = sbyte.MaxValue;
             byte[] buffer = Array.Empty<byte>();
             Span<byte> span = buffer;
@@ -94,7 +93,7 @@ namespace AllocationFreeByteReaderWriter.Tests {
         }
 
         [Fact]
-        public void TestShort() {
+        public void Short() {
             const short expected = short.MaxValue;
             byte[] buffer = Array.Empty<byte>();
             Span<byte> span = buffer;
@@ -120,7 +119,7 @@ namespace AllocationFreeByteReaderWriter.Tests {
         }
 
         [Fact]
-        public void TestUShort() {
+        public void UShort() {
             const ushort expected = ushort.MaxValue;
             byte[] buffer = Array.Empty<byte>();
             Span<byte> span = buffer;
@@ -146,7 +145,7 @@ namespace AllocationFreeByteReaderWriter.Tests {
         }
 
         [Fact]
-        public void TestInt() {
+        public void Int() {
             const int expected = int.MaxValue;
             byte[] buffer = Array.Empty<byte>();
             Span<byte> span = buffer;
@@ -172,7 +171,7 @@ namespace AllocationFreeByteReaderWriter.Tests {
         }
 
         [Fact]
-        public void TestUInt() {
+        public void UInt() {
             const uint expected = uint.MaxValue;
             byte[] buffer = Array.Empty<byte>();
             Span<byte> span = buffer;
@@ -198,7 +197,7 @@ namespace AllocationFreeByteReaderWriter.Tests {
         }
 
         [Fact]
-        public void TestLong() {
+        public void Long() {
             const long expected = long.MaxValue;
             byte[] buffer = Array.Empty<byte>();
             Span<byte> span = buffer;
@@ -224,7 +223,7 @@ namespace AllocationFreeByteReaderWriter.Tests {
         }
 
         [Fact]
-        public void TestULong() {
+        public void ULong() {
             const ulong expected = ulong.MaxValue;
             byte[] buffer = Array.Empty<byte>();
             Span<byte> span = buffer;
@@ -250,7 +249,7 @@ namespace AllocationFreeByteReaderWriter.Tests {
         }
 
         [Fact]
-        public void TestChar() {
+        public void Char() {
             const char expected = char.MaxValue;
             byte[] buffer = Array.Empty<byte>();
             Span<byte> span = buffer;
@@ -276,7 +275,7 @@ namespace AllocationFreeByteReaderWriter.Tests {
         }
 
         [Fact]
-        public void TestFloat() {
+        public void Float() {
             const float expected = float.MaxValue;
             byte[] buffer = Array.Empty<byte>();
             Span<byte> span = buffer;
@@ -302,7 +301,7 @@ namespace AllocationFreeByteReaderWriter.Tests {
         }
 
         [Fact]
-        public void TestDouble() {
+        public void Double() {
             const double expected = double.MaxValue;
             byte[] buffer = Array.Empty<byte>();
             Span<byte> span = buffer;
@@ -328,7 +327,7 @@ namespace AllocationFreeByteReaderWriter.Tests {
         }
 
         [Fact]
-        public void TestDecimal() {
+        public void Decimal() {
             const decimal expected = decimal.MaxValue;
             byte[] buffer = Array.Empty<byte>();
             Span<byte> span = buffer;
@@ -351,70 +350,6 @@ namespace AllocationFreeByteReaderWriter.Tests {
             Assert.True(rest2.IsEmpty);
 
             Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void TestString() {
-            string expected = "Test123";
-
-            byte[] buffer = Array.Empty<byte>();
-            Span<byte> span = buffer;
-
-            bool success = span.TryWrite(expected, out Span<byte> rest, Encoding.UTF8);
-            Assert.False(success);
-
-            success = ((ReadOnlySpan<byte>)buffer).TryRead(out string actual, out ReadOnlySpan<byte> rest2, Encoding.UTF8);
-            Assert.False(success);
-
-            buffer = new byte[sizeof(int)];
-            span = buffer;
-
-            success = span.TryWrite(expected, out rest, Encoding.UTF8);
-            Assert.False(success);
-
-            success = ((ReadOnlySpan<byte>)buffer).TryRead(out actual, out rest2, Encoding.UTF8);
-            Assert.True(success);
-            Assert.Equal(string.Empty, actual);
-
-            buffer = new byte[sizeof(int) + Encoding.UTF8.GetByteCount(expected)];
-            span = buffer;
-
-            success = span.TryWrite(expected, out rest, Encoding.UTF8);
-            Assert.True(success);
-            Assert.True(rest.IsEmpty);
-
-            success = ((ReadOnlySpan<byte>)buffer).TryRead(out actual, out rest2, Encoding.UTF8);
-            Assert.True(success);
-            Assert.True(rest2.IsEmpty);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void TestSpan() {
-            ReadOnlySpan<byte> expected = Encoding.ASCII.GetBytes("Test123");
-
-            byte[] buffer = Array.Empty<byte>();
-            Span<byte> span = buffer;
-
-            bool success = span.TryWrite(expected, out Span<byte> rest);
-            Assert.False(success);
-
-            success = ((ReadOnlySpan<byte>)buffer).TryRead(out ReadOnlySpan<byte> actual, expected.Length, out ReadOnlySpan<byte> rest2);
-            Assert.False(success);
-
-            buffer = new byte[expected.Length];
-            span = buffer;
-
-            success = span.TryWrite(expected, out rest);
-            Assert.True(success);
-            Assert.True(rest.IsEmpty);
-
-            success = ((ReadOnlySpan<byte>)buffer).TryRead(out actual, expected.Length, out rest2);
-            Assert.True(success);
-            Assert.True(rest2.IsEmpty);
-
-            Assert.Equal(expected.ToArray(), actual.ToArray());
         }
     }
 }
