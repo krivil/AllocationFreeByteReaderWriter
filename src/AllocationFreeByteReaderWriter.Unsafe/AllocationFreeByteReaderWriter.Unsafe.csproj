@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>AllocationFreeByteReaderWriter</RootNamespace>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Nullable>enable</Nullable>
+        <WarningsAsErrors>nullable</WarningsAsErrors>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <Version>0.3.0</Version>
+        <Authors>Kiril Markov</Authors>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageProjectUrl>https://github.com/krivil/AllocationFreeByteReaderWriter</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/krivil/AllocationFreeByteReaderWriter.git</RepositoryUrl>
+        <Copyright>Copyright © 2020 Kiril Markov</Copyright>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\AllocationFreeByteReaderWriter\LICENSE">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
+</Project>
