@@ -6,6 +6,10 @@
 
     public static partial class ByteWriter {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryWrite(this in Span<byte> destination, in string value, out Span<byte> rest)
+            => TryWrite(destination, value, out rest, Encoding.UTF8);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool TryWrite(this in Span<byte> destination, in string value, out Span<byte> rest,
             Encoding encoding) {
             int encodedStringLength = encoding.GetByteCount(value);
@@ -28,7 +32,11 @@
                 ArrayPool<byte>.Shared.Return(byteBuffer);
             }
         }
-        
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryWrite(this in Span<byte> destination, in ReadOnlySpan<char> value, out Span<byte> rest)
+            => TryWrite(destination, value, out rest, Encoding.UTF8);
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool TryWrite(this in Span<byte> destination, in ReadOnlySpan<char> value, out Span<byte> rest,
             Encoding encoding) {
@@ -55,7 +63,7 @@
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool TryWrite(this in Span<byte> destination, in DateTime value, out Span<byte> rest)
-            => TryWrite(destination, value.Ticks, out rest);
+            => TryWrite(destination, value.ToBinary(), out rest);
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool TryWrite(this in Span<byte> destination, in TimeSpan value, out Span<byte> rest)
