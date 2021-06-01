@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\AllocationFreeByteReaderWriter.Serializable\AllocationFreeByteReaderWriter.Serializable.csproj" />
     <ProjectReference Include="..\..\src\AllocationFreeByteReaderWriter\AllocationFreeByteReaderWriter.csproj" />
   </ItemGroup>
 

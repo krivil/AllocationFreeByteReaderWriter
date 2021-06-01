@@ -12,7 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AllocationFreeByteReaderWriter.Tests", "test\AllocationFreeByteReaderWriter.Tests\AllocationFreeByteReaderWriter.Tests.csproj", "{89ADFB2A-E266-4378-B5B2-07B13F0828C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllocationFreeByteReaderWriter.Unsafe", "src\AllocationFreeByteReaderWriter.Unsafe\AllocationFreeByteReaderWriter.Unsafe.csproj", "{7DD30683-3B86-4A6D-90CD-5D166087EA55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AllocationFreeByteReaderWriter.Unsafe", "src\AllocationFreeByteReaderWriter.Unsafe\AllocationFreeByteReaderWriter.Unsafe.csproj", "{7DD30683-3B86-4A6D-90CD-5D166087EA55}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AllocationFreeByteReaderWriter.Serializable", "src\AllocationFreeByteReaderWriter.Serializable\AllocationFreeByteReaderWriter.Serializable.csproj", "{01E3B4EE-A64C-4D2E-A1C1-3B1073161184}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,10 @@ Global
 		{7DD30683-3B86-4A6D-90CD-5D166087EA55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DD30683-3B86-4A6D-90CD-5D166087EA55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DD30683-3B86-4A6D-90CD-5D166087EA55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01E3B4EE-A64C-4D2E-A1C1-3B1073161184}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01E3B4EE-A64C-4D2E-A1C1-3B1073161184}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01E3B4EE-A64C-4D2E-A1C1-3B1073161184}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01E3B4EE-A64C-4D2E-A1C1-3B1073161184}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
