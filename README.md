@@ -25,7 +25,11 @@ Requrements:
 ```csharp
 public record TestPersistable : IPersistable<TestPersistable> {
     // abstract static intefrace override
-    public static bool TryRead(ReadOnlySpan<byte> span, out TestPersistable value, out ReadOnlySpan<byte> rest)
+    public static bool TryRead(
+        ReadOnlySpan<byte> span,
+        out TestPersistable value,
+        out ReadOnlySpan<byte> rest)
+
         => InitializeOuts(out value, out rest)
         && span.TryRead(out int integerProp, out rest)
         && rest.TryRead(out string stringProp, out rest, Encoding.UTF8)
@@ -36,7 +40,9 @@ public record TestPersistable : IPersistable<TestPersistable> {
     public string StringProperty { get; init; }
 
     // interface override
-    public int GetPersistedSizeInBytes() => sizeof(int) + sizeof(int) + Encoding.UTF8.GetByteCount(StringProperty);
+    public int GetPersistedSizeInBytes() 
+        => sizeof(int)
+        + sizeof(int) + Encoding.UTF8.GetByteCount(StringProperty);
     
     // interface override
     public bool TryWrite(Span<byte> span, out Span<byte> rest)
@@ -44,14 +50,21 @@ public record TestPersistable : IPersistable<TestPersistable> {
         && rest.TryWrite(StringProperty, out rest, Encoding.UTF8);
 
     // helper method for TryRead
-    private static bool InitializeOuts(out TestPersistable persistable, out ReadOnlySpan<byte> rest) {
+    private static bool InitializeOuts(
+        out TestPersistable persistable,
+        out ReadOnlySpan<byte> rest) {
+
         persistable = default;
         rest = default;
         return true;
     }
 
     // helper method for TryRead
-    private static bool CreateInstance(int integerProperty, string stringProperty, out TestPersistable persistable) {
+    private static bool CreateInstance(
+        int integerProperty,
+        string stringProperty,
+        out TestPersistable persistable) {
+
         persistable = new TestPersistable() {
             IntegerProperty = integerProperty,
             StringProperty = stringProperty,
@@ -62,7 +75,8 @@ public record TestPersistable : IPersistable<TestPersistable> {
 ```
 
 ```csharp
-bool success = span.TryWrite(new TestPersistable(){ IntegerProperty = 1, StringProperty = "foo" }, out Span<byte> rest);
+var persistable = new TestPersistable(){ IntegerProperty = 1, StringProperty = "foo" };
+bool success = span.TryWrite(persistable, out Span<byte> rest);
 ```
 
 ```csharp
