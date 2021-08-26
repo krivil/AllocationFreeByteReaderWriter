@@ -16,7 +16,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AllocationFreeByteReaderWri
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AllocationFreeByteReaderWriter.Serializable", "src\AllocationFreeByteReaderWriter.Serializable\AllocationFreeByteReaderWriter.Serializable.csproj", "{01E3B4EE-A64C-4D2E-A1C1-3B1073161184}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllocationFreeByteReaderWriter.Persistable", "src\AllocationFreeByteReaderWriter.Persistable\AllocationFreeByteReaderWriter.Persistable.csproj", "{D8731A58-5F58-4D1A-A6B2-52A196023EB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AllocationFreeByteReaderWriter.Persistable", "src\AllocationFreeByteReaderWriter.Persistable\AllocationFreeByteReaderWriter.Persistable.csproj", "{D8731A58-5F58-4D1A-A6B2-52A196023EB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllocationFreeByteReaderWriter.Benchmark", "test\AllocationFreeByteReaderWriter.Benchmark\AllocationFreeByteReaderWriter.Benchmark.csproj", "{3399BC22-E419-432F-9805-D93AFDF14B1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{D8731A58-5F58-4D1A-A6B2-52A196023EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8731A58-5F58-4D1A-A6B2-52A196023EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8731A58-5F58-4D1A-A6B2-52A196023EB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3399BC22-E419-432F-9805-D93AFDF14B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3399BC22-E419-432F-9805-D93AFDF14B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3399BC22-E419-432F-9805-D93AFDF14B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3399BC22-E419-432F-9805-D93AFDF14B1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
