@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30803.129
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31612.314
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AllocationFreeByteReaderWriter", "src\AllocationFreeByteReaderWriter\AllocationFreeByteReaderWriter.csproj", "{7AA315AD-02CC-4F39-B9C2-DB5F70BF44CA}"
 EndProject
@@ -15,6 +15,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AllocationFreeByteReaderWriter.Unsafe", "src\AllocationFreeByteReaderWriter.Unsafe\AllocationFreeByteReaderWriter.Unsafe.csproj", "{7DD30683-3B86-4A6D-90CD-5D166087EA55}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AllocationFreeByteReaderWriter.Serializable", "src\AllocationFreeByteReaderWriter.Serializable\AllocationFreeByteReaderWriter.Serializable.csproj", "{01E3B4EE-A64C-4D2E-A1C1-3B1073161184}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllocationFreeByteReaderWriter.Persistable", "src\AllocationFreeByteReaderWriter.Persistable\AllocationFreeByteReaderWriter.Persistable.csproj", "{D8731A58-5F58-4D1A-A6B2-52A196023EB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{01E3B4EE-A64C-4D2E-A1C1-3B1073161184}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01E3B4EE-A64C-4D2E-A1C1-3B1073161184}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01E3B4EE-A64C-4D2E-A1C1-3B1073161184}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8731A58-5F58-4D1A-A6B2-52A196023EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8731A58-5F58-4D1A-A6B2-52A196023EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8731A58-5F58-4D1A-A6B2-52A196023EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8731A58-5F58-4D1A-A6B2-52A196023EB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

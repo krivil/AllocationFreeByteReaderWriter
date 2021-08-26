@@ -1,8 +1,8 @@
-﻿namespace AllocationFreeByteReaderWriter.Tests {
-    using System;
-    using Xunit;
+﻿namespace AllocationFreeByteReaderWriter.Tests;
 
-    public class ArrayTests {
-        
-    }
+using System;
+using Xunit;
+
+public class ArrayTests {
+
 }

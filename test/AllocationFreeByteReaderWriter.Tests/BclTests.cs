@@ -1,45 +1,44 @@
-namespace AllocationFreeByteReaderWriter.Tests
-{
-    using System;
-    using System.Text;
-    using Xunit;
+namespace AllocationFreeByteReaderWriter.Tests;
 
-    public class BclTests {
-        [Fact]
-        public void String() {
-            string expected = "Test123";
+using System;
+using System.Text;
+using Xunit;
 
-            byte[] buffer = Array.Empty<byte>();
-            Span<byte> span = buffer;
+public class BclTests {
+    [Fact]
+    public void String() {
+        string expected = "Test123";
 
-            bool success = span.TryWrite(expected, out Span<byte> rest, Encoding.UTF8);
-            Assert.False(success);
+        byte[] buffer = Array.Empty<byte>();
+        Span<byte> span = buffer;
 
-            success = ((ReadOnlySpan<byte>)buffer).TryRead(out string actual, out ReadOnlySpan<byte> rest2, Encoding.UTF8);
-            Assert.False(success);
+        bool success = span.TryWrite(expected, out Span<byte> rest, Encoding.UTF8);
+        Assert.False(success);
 
-            buffer = new byte[sizeof(int)];
-            span = buffer;
+        success = ((ReadOnlySpan<byte>)buffer).TryRead(out string actual, out ReadOnlySpan<byte> rest2, Encoding.UTF8);
+        Assert.False(success);
 
-            success = span.TryWrite(expected, out rest, Encoding.UTF8);
-            Assert.False(success);
+        buffer = new byte[sizeof(int)];
+        span = buffer;
 
-            success = ((ReadOnlySpan<byte>)buffer).TryRead(out actual, out rest2, Encoding.UTF8);
-            Assert.True(success);
-            Assert.Equal(string.Empty, actual);
+        success = span.TryWrite(expected, out rest, Encoding.UTF8);
+        Assert.False(success);
 
-            buffer = new byte[sizeof(int) + Encoding.UTF8.GetByteCount(expected)];
-            span = buffer;
+        success = ((ReadOnlySpan<byte>)buffer).TryRead(out actual, out rest2, Encoding.UTF8);
+        Assert.True(success);
+        Assert.Equal(string.Empty, actual);
 
-            success = span.TryWrite(expected, out rest, Encoding.UTF8);
-            Assert.True(success);
-            Assert.True(rest.IsEmpty);
+        buffer = new byte[sizeof(int) + Encoding.UTF8.GetByteCount(expected)];
+        span = buffer;
 
-            success = ((ReadOnlySpan<byte>)buffer).TryRead(out actual, out rest2, Encoding.UTF8);
-            Assert.True(success);
-            Assert.True(rest2.IsEmpty);
+        success = span.TryWrite(expected, out rest, Encoding.UTF8);
+        Assert.True(success);
+        Assert.True(rest.IsEmpty);
 
-            Assert.Equal(expected, actual);
-        }
+        success = ((ReadOnlySpan<byte>)buffer).TryRead(out actual, out rest2, Encoding.UTF8);
+        Assert.True(success);
+        Assert.True(rest2.IsEmpty);
+
+        Assert.Equal(expected, actual);
     }
 }

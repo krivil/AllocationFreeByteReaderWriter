@@ -1,34 +1,34 @@
-﻿namespace AllocationFreeByteReaderWriter.Tests {
-    using System;
-    using System.Text;
-    using Xunit;
+﻿namespace AllocationFreeByteReaderWriter.Tests;
 
-    public class MemoryTests {
-        [Fact]
-        public void Span() {
-            ReadOnlySpan<byte> expected = Encoding.ASCII.GetBytes("Test123");
+using System;
+using System.Text;
+using Xunit;
 
-            byte[] buffer = Array.Empty<byte>();
-            Span<byte> span = buffer;
+public class MemoryTests {
+    [Fact]
+    public void Span() {
+        ReadOnlySpan<byte> expected = Encoding.ASCII.GetBytes("Test123");
 
-            bool success = span.TryWrite(expected, out Span<byte> rest);
-            Assert.False(success);
+        byte[] buffer = Array.Empty<byte>();
+        Span<byte> span = buffer;
 
-            success = ((ReadOnlySpan<byte>)buffer).TryRead(out ReadOnlySpan<byte> actual, expected.Length, out ReadOnlySpan<byte> rest2);
-            Assert.False(success);
+        bool success = span.TryWrite(expected, out Span<byte> rest);
+        Assert.False(success);
 
-            buffer = new byte[expected.Length];
-            span = buffer;
+        success = ((ReadOnlySpan<byte>)buffer).TryRead(out ReadOnlySpan<byte> actual, expected.Length, out ReadOnlySpan<byte> rest2);
+        Assert.False(success);
 
-            success = span.TryWrite(expected, out rest);
-            Assert.True(success);
-            Assert.True(rest.IsEmpty);
+        buffer = new byte[expected.Length];
+        span = buffer;
 
-            success = ((ReadOnlySpan<byte>)buffer).TryRead(out actual, expected.Length, out rest2);
-            Assert.True(success);
-            Assert.True(rest2.IsEmpty);
+        success = span.TryWrite(expected, out rest);
+        Assert.True(success);
+        Assert.True(rest.IsEmpty);
 
-            Assert.Equal(expected.ToArray(), actual.ToArray());
-        }
+        success = ((ReadOnlySpan<byte>)buffer).TryRead(out actual, expected.Length, out rest2);
+        Assert.True(success);
+        Assert.True(rest2.IsEmpty);
+
+        Assert.Equal(expected.ToArray(), actual.ToArray());
     }
 }

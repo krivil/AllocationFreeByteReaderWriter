@@ -1,152 +1,151 @@
-﻿namespace AllocationFreeByteReaderWriter.Tests
-{
-    using Serializable;
-    using System;
-    using Xunit;
+﻿namespace AllocationFreeByteReaderWriter.Tests;
 
-    public class DelegatesTests {
-        [Fact]
-        public void TestInitialization() {
-            DelegateSerializer.RegisterOrReplaceType(1, (_) => sizeof(int),
-                (int value, Span<byte> bytes, out Span<byte> rest) => bytes.TryWrite(value, out rest),
-                (ReadOnlySpan<byte> bytes, out int value, out ReadOnlySpan<byte> rest) => bytes.TryRead(out value, out rest));
-            DelegateSerializer.RegisterOrReplaceType(2, (_) => sizeof(long),
-                (long value, Span<byte> bytes, out Span<byte> rest) => bytes.TryWrite(value, out rest),
-                (ReadOnlySpan<byte> bytes, out long value, out ReadOnlySpan<byte> rest) => bytes.TryRead(out value, out rest));
-            DelegateSerializer.RegisterOrReplaceType(3, (_) => sizeof(double),
-                (double value, Span<byte> bytes, out Span<byte> rest) => bytes.TryWrite(value, out rest),
-                (ReadOnlySpan<byte> bytes, out double value, out ReadOnlySpan<byte> rest) => bytes.TryRead(out value, out rest));
-            DelegateSerializer.RegisterOrReplaceType(4, (_) => sizeof(decimal),
-                (decimal value, Span<byte> bytes, out Span<byte> rest) => bytes.TryWrite(value, out rest),
-                (ReadOnlySpan<byte> bytes, out decimal value, out ReadOnlySpan<byte> rest) => bytes.TryRead(out value, out rest));
-        }
+using Serializable;
+using System;
+using Xunit;
 
-        [Fact]
-        public void TestSerializationAndDeserialization() {
-            DelegateSerializer.RegisterOrReplaceType(1, (_) => sizeof(int),
-                (int value, Span<byte> bytes, out Span<byte> rest) => bytes.TryWrite(value, out rest),
-                (ReadOnlySpan<byte> bytes, out int value, out ReadOnlySpan<byte> rest) => bytes.TryRead(out value, out rest));
-            DelegateSerializer.RegisterOrReplaceType(2, (_) => sizeof(long),
-                (long value, Span<byte> bytes, out Span<byte> rest) => bytes.TryWrite(value, out rest),
-                (ReadOnlySpan<byte> bytes, out long value, out ReadOnlySpan<byte> rest) => bytes.TryRead(out value, out rest));
-            DelegateSerializer.RegisterOrReplaceType(3, (_) => sizeof(double),
-                (double value, Span<byte> bytes, out Span<byte> rest) => bytes.TryWrite(value, out rest),
-                (ReadOnlySpan<byte> bytes, out double value, out ReadOnlySpan<byte> rest) => bytes.TryRead(out value, out rest));
-            DelegateSerializer.RegisterOrReplaceType(4, (_) => sizeof(decimal),
-                (decimal value, Span<byte> bytes, out Span<byte> rest) => bytes.TryWrite(value, out rest),
-                (ReadOnlySpan<byte> bytes, out decimal value, out ReadOnlySpan<byte> rest) => bytes.TryRead(out value, out rest));
+public class DelegatesTests {
+    [Fact]
+    public void TestInitialization() {
+        DelegateSerializer.RegisterOrReplaceType(1, (_) => sizeof(int),
+            (int value, Span<byte> bytes, out Span<byte> rest) => bytes.TryWrite(value, out rest),
+            (ReadOnlySpan<byte> bytes, out int value, out ReadOnlySpan<byte> rest) => bytes.TryRead(out value, out rest));
+        DelegateSerializer.RegisterOrReplaceType(2, (_) => sizeof(long),
+            (long value, Span<byte> bytes, out Span<byte> rest) => bytes.TryWrite(value, out rest),
+            (ReadOnlySpan<byte> bytes, out long value, out ReadOnlySpan<byte> rest) => bytes.TryRead(out value, out rest));
+        DelegateSerializer.RegisterOrReplaceType(3, (_) => sizeof(double),
+            (double value, Span<byte> bytes, out Span<byte> rest) => bytes.TryWrite(value, out rest),
+            (ReadOnlySpan<byte> bytes, out double value, out ReadOnlySpan<byte> rest) => bytes.TryRead(out value, out rest));
+        DelegateSerializer.RegisterOrReplaceType(4, (_) => sizeof(decimal),
+            (decimal value, Span<byte> bytes, out Span<byte> rest) => bytes.TryWrite(value, out rest),
+            (ReadOnlySpan<byte> bytes, out decimal value, out ReadOnlySpan<byte> rest) => bytes.TryRead(out value, out rest));
+    }
 
-            DelegateSerializer.RegisterOrReplaceType(5, value => value.CalculateSizeForBytesSerialization(),
-                (TimestampDto value, Span<byte> bytes, out Span<byte> rest) => value.ToBytes(bytes, out rest),
-                (ReadOnlySpan<byte> bytes, out TimestampDto value, out ReadOnlySpan<byte> rest) => TimestampDto.TryFromBytes(bytes, out value, out rest));
+    [Fact]
+    public void TestSerializationAndDeserialization() {
+        DelegateSerializer.RegisterOrReplaceType(1, (_) => sizeof(int),
+            (int value, Span<byte> bytes, out Span<byte> rest) => bytes.TryWrite(value, out rest),
+            (ReadOnlySpan<byte> bytes, out int value, out ReadOnlySpan<byte> rest) => bytes.TryRead(out value, out rest));
+        DelegateSerializer.RegisterOrReplaceType(2, (_) => sizeof(long),
+            (long value, Span<byte> bytes, out Span<byte> rest) => bytes.TryWrite(value, out rest),
+            (ReadOnlySpan<byte> bytes, out long value, out ReadOnlySpan<byte> rest) => bytes.TryRead(out value, out rest));
+        DelegateSerializer.RegisterOrReplaceType(3, (_) => sizeof(double),
+            (double value, Span<byte> bytes, out Span<byte> rest) => bytes.TryWrite(value, out rest),
+            (ReadOnlySpan<byte> bytes, out double value, out ReadOnlySpan<byte> rest) => bytes.TryRead(out value, out rest));
+        DelegateSerializer.RegisterOrReplaceType(4, (_) => sizeof(decimal),
+            (decimal value, Span<byte> bytes, out Span<byte> rest) => bytes.TryWrite(value, out rest),
+            (ReadOnlySpan<byte> bytes, out decimal value, out ReadOnlySpan<byte> rest) => bytes.TryRead(out value, out rest));
 
-            //
+        DelegateSerializer.RegisterOrReplaceType(5, value => value.CalculateSizeForBytesSerialization(),
+            (TimestampDto value, Span<byte> bytes, out Span<byte> rest) => value.ToBytes(bytes, out rest),
+            (ReadOnlySpan<byte> bytes, out TimestampDto value, out ReadOnlySpan<byte> rest) => TimestampDto.TryFromBytes(bytes, out value, out rest));
 
-            byte[] buffer = new byte[16];
+        //
 
-            Span<byte> span = buffer.AsSpan();
+        byte[] buffer = new byte[16];
 
-            int intValue = 7;
+        Span<byte> span = buffer.AsSpan();
 
-            bool success = DelegateSerializer.TrySerialize(1, intValue, span, out Span<byte> rest);
+        int intValue = 7;
 
-            Assert.True(success);
-            Assert.Equal(16 - sizeof(int), rest.Length);
+        bool success = DelegateSerializer.TrySerialize(1, intValue, span, out Span<byte> rest);
 
-            success = DelegateSerializer.TryDeserialize(1, span, out int intValue2, out ReadOnlySpan<byte> rest2);
+        Assert.True(success);
+        Assert.Equal(16 - sizeof(int), rest.Length);
 
-            Assert.True(success);
-            Assert.Equal(16 - sizeof(int), rest2.Length);
+        success = DelegateSerializer.TryDeserialize(1, span, out int intValue2, out ReadOnlySpan<byte> rest2);
 
-            Assert.Equal(intValue, intValue2);
+        Assert.True(success);
+        Assert.Equal(16 - sizeof(int), rest2.Length);
 
-            //
+        Assert.Equal(intValue, intValue2);
 
-            buffer = new byte[16];
+        //
 
-            span = buffer.AsSpan();
+        buffer = new byte[16];
 
-            long longValue = 7;
+        span = buffer.AsSpan();
 
-            success = DelegateSerializer.TrySerialize(2, longValue, span, out rest);
+        long longValue = 7;
 
-            Assert.True(success);
-            Assert.Equal(16 - sizeof(long), rest.Length);
+        success = DelegateSerializer.TrySerialize(2, longValue, span, out rest);
 
-            success = DelegateSerializer.TryDeserialize(2, span, out long longValue2, out rest2);
+        Assert.True(success);
+        Assert.Equal(16 - sizeof(long), rest.Length);
 
-            Assert.True(success);
-            Assert.Equal(16 - sizeof(long), rest2.Length);
+        success = DelegateSerializer.TryDeserialize(2, span, out long longValue2, out rest2);
 
-            Assert.Equal(longValue, longValue2);
+        Assert.True(success);
+        Assert.Equal(16 - sizeof(long), rest2.Length);
 
-            //
+        Assert.Equal(longValue, longValue2);
 
-            buffer = new byte[16];
+        //
 
-            span = buffer.AsSpan();
+        buffer = new byte[16];
 
-            double doubleValue = 7.0;
+        span = buffer.AsSpan();
 
-            success = DelegateSerializer.TrySerialize(3, doubleValue, span, out rest);
+        double doubleValue = 7.0;
 
-            Assert.True(success);
-            Assert.Equal(16 - sizeof(double), rest.Length);
+        success = DelegateSerializer.TrySerialize(3, doubleValue, span, out rest);
 
-            success = DelegateSerializer.TryDeserialize(3, span, out double doubleValue2, out rest2);
+        Assert.True(success);
+        Assert.Equal(16 - sizeof(double), rest.Length);
 
-            Assert.True(success);
-            Assert.Equal(16 - sizeof(double), rest2.Length);
+        success = DelegateSerializer.TryDeserialize(3, span, out double doubleValue2, out rest2);
 
-            Assert.Equal(doubleValue, doubleValue2);
+        Assert.True(success);
+        Assert.Equal(16 - sizeof(double), rest2.Length);
 
-            //
+        Assert.Equal(doubleValue, doubleValue2);
 
-            buffer = new byte[16];
+        //
 
-            span = buffer.AsSpan();
+        buffer = new byte[16];
 
-            decimal decimalValue = 7.0m;
+        span = buffer.AsSpan();
 
-            success = DelegateSerializer.TrySerialize(4, decimalValue, span, out rest);
+        decimal decimalValue = 7.0m;
 
-            Assert.True(success);
-            Assert.Equal(16 - sizeof(decimal), rest.Length);
+        success = DelegateSerializer.TrySerialize(4, decimalValue, span, out rest);
 
-            success = DelegateSerializer.TryDeserialize(4, span, out decimal decimalValue2, out rest2);
+        Assert.True(success);
+        Assert.Equal(16 - sizeof(decimal), rest.Length);
 
-            Assert.True(success);
-            Assert.Equal(16 - sizeof(decimal), rest2.Length);
+        success = DelegateSerializer.TryDeserialize(4, span, out decimal decimalValue2, out rest2);
 
-            Assert.Equal(decimalValue, decimalValue2);
+        Assert.True(success);
+        Assert.Equal(16 - sizeof(decimal), rest2.Length);
 
-            //
+        Assert.Equal(decimalValue, decimalValue2);
 
-            var dto = new TimestampDto(DateTime.UtcNow, 1);
+        //
 
-            int len = DelegateSerializer.GetSizeInBytesForSerialization(5, dto);
+        var dto = new TimestampDto(DateTime.UtcNow, 1);
 
-            Assert.NotEqual(-1, len);
+        int len = DelegateSerializer.GetSizeInBytesForSerialization(5, dto);
 
-            buffer = new byte[len + 5];
+        Assert.NotEqual(-1, len);
 
-            span = buffer.AsSpan();
+        buffer = new byte[len + 5];
 
-            success = DelegateSerializer.TrySerialize(5, dto, span, out rest);
+        span = buffer.AsSpan();
 
-            Assert.True(success);
+        success = DelegateSerializer.TrySerialize(5, dto, span, out rest);
 
-            Assert.Equal(5, rest.Length);
+        Assert.True(success);
 
-            success = DelegateSerializer.TryDeserialize(5, span, out TimestampDto dtoValue, out rest2);
+        Assert.Equal(5, rest.Length);
 
-            Assert.True(success);
+        success = DelegateSerializer.TryDeserialize(5, span, out TimestampDto dtoValue, out rest2);
 
-            var dto2 = dtoValue as TimestampDto;
+        Assert.True(success);
 
-            Assert.Equal(5, rest2.Length);
+        var dto2 = dtoValue as TimestampDto;
 
-            Assert.Equal(dto, dto2);
-        }
+        Assert.Equal(5, rest2.Length);
+
+        Assert.Equal(dto, dto2);
     }
 }
