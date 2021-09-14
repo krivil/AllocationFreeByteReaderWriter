@@ -7,19 +7,9 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Version>0.3.0</Version>
-		<Authors>Kiril Markov</Authors>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<PackageProjectUrl>https://github.com/krivil/AllocationFreeByteReaderWriter</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/krivil/AllocationFreeByteReaderWriter.git</RepositoryUrl>
-		<Copyright>Copyright © 2020 Kiril Markov</Copyright>
+		<Version>0.3.2</Version>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageId>$(AssemblyName).Core</PackageId>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Include="LICENSE">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
-	</ItemGroup>
 
 </Project>
