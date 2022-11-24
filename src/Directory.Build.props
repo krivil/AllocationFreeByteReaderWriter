@@ -1,0 +1,21 @@
+<Project>
+    <PropertyGroup>
+        <Authors>krivil</Authors>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <Copyright>Copyright © 2021 Kiril Markov</Copyright>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(GITHUB_ACTIONS)' == 'true' ">
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+    </ItemGroup>
+</Project>

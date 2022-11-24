@@ -1,6 +1,7 @@
 ﻿namespace AllocationFreeByteReaderWriter.Serializable {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     public static class DelegateSerializer {
         private record TypeDelegateHolder(Type Type, Delegate UntypedGetSizeInBytes, Delegate UntypedSerialize, Delegate UntypedDeserialize);
@@ -67,7 +68,7 @@
             }
         }
 
-        public static bool TryDeserialize<T>(short id, ReadOnlySpan<byte> bytes, out T? value,
+        public static bool TryDeserialize<T>(short id, ReadOnlySpan<byte> bytes, [MaybeNullWhen(false)] out T value,
             out ReadOnlySpan<byte> rest) {
             bool success;
             TypeDelegateHolder? data;
@@ -76,7 +77,7 @@
             }
 
             if (success) {
-                (Type type, _, _, var deserialize) = (TypeDelegateHolder<T>)data!;
+                (Type type, _, _, DeserializeDelegate<T> deserialize) = (TypeDelegateHolder<T>)data!;
 
                 if (typeof(T) == type) return deserialize(bytes, out value, out rest);
             }

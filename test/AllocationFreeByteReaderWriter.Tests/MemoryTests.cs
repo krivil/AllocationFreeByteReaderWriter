@@ -12,7 +12,7 @@ public class MemoryTests {
         byte[] buffer = Array.Empty<byte>();
         Span<byte> span = buffer;
 
-        bool success = span.TryWrite(expected, out Span<byte> rest);
+        bool success = span.TryWriteRaw(expected, out Span<byte> rest);
         Assert.False(success);
 
         success = ((ReadOnlySpan<byte>)buffer).TryRead(out ReadOnlySpan<byte> actual, expected.Length, out ReadOnlySpan<byte> rest2);
@@ -21,7 +21,7 @@ public class MemoryTests {
         buffer = new byte[expected.Length];
         span = buffer;
 
-        success = span.TryWrite(expected, out rest);
+        success = span.TryWriteRaw(expected, out rest);
         Assert.True(success);
         Assert.True(rest.IsEmpty);
 

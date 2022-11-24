@@ -138,14 +138,12 @@ public class DelegatesTests {
 
         Assert.Equal(5, rest.Length);
 
-        success = DelegateSerializer.TryDeserialize(5, span, out TimestampDto dtoValue, out rest2);
+        success = DelegateSerializer.TryDeserialize(5, span, out TimestampDto? dtoValue, out rest2);
 
         Assert.True(success);
 
-        var dto2 = dtoValue as TimestampDto;
-
         Assert.Equal(5, rest2.Length);
 
-        Assert.Equal(dto, dto2);
+        Assert.Equal(dto, dtoValue);
     }
 }

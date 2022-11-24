@@ -1,18 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<WarningsAsErrors>nullable</WarningsAsErrors>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="BenchmarkDotNet" Version="0.13.2" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\AllocationFreeByteReaderWriter.Persistable\AllocationFreeByteReaderWriter.Persistable.csproj" />
-    <ProjectReference Include="..\..\src\AllocationFreeByteReaderWriter\AllocationFreeByteReaderWriter.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\AllocationFreeByteReaderWriter.Persistable\AllocationFreeByteReaderWriter.Persistable.csproj" />
+		<ProjectReference Include="..\..\src\AllocationFreeByteReaderWriter\AllocationFreeByteReaderWriter.csproj" />
+	</ItemGroup>
 
 </Project>

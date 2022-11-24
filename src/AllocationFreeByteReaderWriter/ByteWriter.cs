@@ -1,5 +1,4 @@
-﻿namespace AllocationFreeByteReaderWriter {
+﻿namespace AllocationFreeByteReaderWriter; 
 
-    public static partial class ByteWriter {
-    }
+public static partial class ByteWriter {
 }

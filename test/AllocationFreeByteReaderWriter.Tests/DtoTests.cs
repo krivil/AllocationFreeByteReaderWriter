@@ -6,9 +6,7 @@ using Xunit;
 
 public class DtoTests {
     [Fact]
-    public void Initialization() {
-        DataTransferObjectSerializer.RegisterOrReplaceType<TimestampDto>(1);
-    }
+    public void Initialization() => DataTransferObjectSerializer.RegisterOrReplaceType<TimestampDto>(1);
 
     [Fact]
     public void SerializationAndDeserialization() {
@@ -26,7 +24,7 @@ public class DtoTests {
 
         Assert.Equal(5, rest.Length);
 
-        bool success = DataTransferObjectSerializer.TryDeserialize(1, span, out SerializableDataTransferObject dtoValue, out ReadOnlySpan<byte> rest2);
+        bool success = DataTransferObjectSerializer.TryDeserialize(1, span, out SerializableDataTransferObject? dtoValue, out ReadOnlySpan<byte> rest2);
 
         Assert.True(success);
 

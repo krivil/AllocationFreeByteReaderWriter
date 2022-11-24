@@ -8,7 +8,7 @@ using Xunit;
 public class PersistableTests {
     [Fact]
     public void PersistUnpersist() {
-        TestPersistable expected = new TestPersistable(){
+        var expected = new TestPersistable {
             IntegerProperty = 1,
             StringProperty  = "asdf",
         };
@@ -19,7 +19,8 @@ public class PersistableTests {
         bool success = span.TryWrite(expected, out _);
         Assert.False(success);
 
-        success = ((ReadOnlySpan<byte>)span).TryRead(out TestPersistable actual, out _);
+        ReadOnlySpan<byte> roSpan = span;
+        success = roSpan.TryRead<TestPersistable>(out TestPersistable? actual, out _);
         Assert.False(success);
 
         buffer = new byte[expected.GetPersistedSizeInBytes()];
@@ -29,23 +30,23 @@ public class PersistableTests {
         Assert.True(success);
         Assert.True(rest.IsEmpty);
 
-        success = ((ReadOnlySpan<byte>)span).TryRead(out actual, out ReadOnlySpan<byte> rest2);
+        success = ((ReadOnlySpan<byte>)span).TryRead<TestPersistable>(out actual, out ReadOnlySpan<byte> rest2);
         Assert.True(success);
         Assert.True(rest2.IsEmpty);
 
         Assert.Equal(expected, actual);
     }
 
-    public record TestPersistable : IPersistable<TestPersistable> {
+    public sealed record TestPersistable : IPersistable<TestPersistable> {
         public static bool TryRead(ReadOnlySpan<byte> from, out TestPersistable value, out ReadOnlySpan<byte> rest)
             => InitializeOuts(out value, out rest)
             && from.TryRead(out int integerProp, out rest)
             && rest.TryRead(out string stringProp, out rest, Encoding.UTF8)
             && CreateInstance(integerProp, stringProp, out value);
 
-        public int IntegerProperty { get; init; }
+        public required int IntegerProperty { get; init; }
         
-        public string StringProperty { get; init; }
+        public required string StringProperty { get; init; }
 
         public int GetPersistedSizeInBytes() => sizeof(int) + sizeof(int) + Encoding.UTF8.GetByteCount(StringProperty);
         
@@ -54,7 +55,7 @@ public class PersistableTests {
             && rest.TryWrite(StringProperty, out rest, Encoding.UTF8);
 
         private static bool InitializeOuts(out TestPersistable persistable, out ReadOnlySpan<byte> rest) {
-            persistable = default;
+            persistable = default!;
             rest = default;
             return true;
         }

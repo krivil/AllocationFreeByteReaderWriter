@@ -2,8 +2,10 @@
 using AllocationFreeByteReaderWriter;
 using BenchmarkDotNet.Configs;
 using AllocationFreeByteReaderWriter.Persistable;
+using System;
 using System.Text;
 using System.Text.Json;
+using System.Diagnostics.CodeAnalysis;
 
 [MemoryDiagnoser]
 [CsvMeasurementsExporter]
@@ -197,15 +199,15 @@ public class Benchmarks {
 
     [BenchmarkCategory("Deserialize,AllocationFree"), Benchmark]
     public bool DeserializePersistable()
-        => new ReadOnlySpan<byte>(_persistableBuffer).TryRead(out TestPersistable? value, out _);
+        => ((ReadOnlySpan<byte>)_persistableBuffer).TryRead(out TestPersistable _, out _);
 
     [BenchmarkCategory("Deserialize,Json"), Benchmark]
     public TestPersistable? DeserializePersistableJson()
         => JsonSerializer.Deserialize<TestPersistable>("{\"IntegerProperty\": 123, \"StringProperty\": \"foo\"}");
 
 
-    public record TestPersistable : IPersistable<TestPersistable> {
-        public static bool TryRead(ReadOnlySpan<byte> from, out TestPersistable? value, out ReadOnlySpan<byte> rest)
+    public sealed record TestPersistable : IPersistable<TestPersistable> {
+        public static bool TryRead(ReadOnlySpan<byte> from, out TestPersistable value, out ReadOnlySpan<byte> rest)
             => InitializeOuts(out value, out rest)
             && from.TryRead(out int integerProp, out rest)
             && rest.TryRead(out string stringProp, out rest, Encoding.UTF8)
@@ -221,8 +223,8 @@ public class Benchmarks {
             => to.TryWrite(IntegerProperty, out rest)
             && rest.TryWrite(StringProperty, out rest, Encoding.UTF8);
 
-        private static bool InitializeOuts(out TestPersistable? persistable, out ReadOnlySpan<byte> rest) {
-            persistable = default;
+        private static bool InitializeOuts(out TestPersistable persistable, out ReadOnlySpan<byte> rest) {
+            persistable = default!;
             rest = default;
             return true;
         }

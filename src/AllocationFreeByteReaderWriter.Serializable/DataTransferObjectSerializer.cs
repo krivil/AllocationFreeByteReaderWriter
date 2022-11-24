@@ -2,6 +2,7 @@
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq.Expressions;
     using System.Reflection;
 
@@ -23,7 +24,7 @@
             _registeredTypes[id] = constructorDelegate;
         }
 
-        public static bool TryDeserialize(short id, ReadOnlySpan<byte> bytes, out SerializableDataTransferObject? value, out ReadOnlySpan<byte> rest) {
+        public static bool TryDeserialize(short id, ReadOnlySpan<byte> bytes, [MaybeNullWhen(false)] out SerializableDataTransferObject value, out ReadOnlySpan<byte> rest) {
             if (_registeredTypes.TryGetValue(id, out ConstructDtoDelegate? ctor)) {
                 value = ctor(bytes, out rest);
                 return true;
